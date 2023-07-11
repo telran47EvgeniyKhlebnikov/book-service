@@ -11,8 +11,8 @@ import telran.java47.book.model.Publisher;
 
 public interface BookRepository extends PagingAndSortingRepository<Book, String> {
 
-	Stream<Book> findAllByAuthors(Author author);
-	
-	Stream<Book> findAllByPublisher(Publisher publisher);
+	Stream<Book> findByAuthorsName(String name);
+
+	Stream<Book> findByPublisherPublisherName(String name);
 
 }
