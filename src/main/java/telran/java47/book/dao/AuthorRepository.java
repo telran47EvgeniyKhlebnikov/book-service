@@ -11,3 +11,4 @@ public interface AuthorRepository {
 	
 	void delete(Author author);
 }
+

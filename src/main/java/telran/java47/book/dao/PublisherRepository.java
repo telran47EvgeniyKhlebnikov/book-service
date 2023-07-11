@@ -17,3 +17,4 @@ public interface PublisherRepository {
 
 	Publisher save(Publisher publisher);
 }
+

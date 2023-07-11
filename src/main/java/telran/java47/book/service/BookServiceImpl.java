@@ -35,12 +35,12 @@ public class BookServiceImpl implements BookService {
 		}
 		//Publisher
 		Publisher publisher = publisherRepository.findById(bookDto.getPublisher())
-				.orElseGet(() -> publisherRepository.save(new Publisher(bookDto.getPublisher())));
+												 .orElseGet(() -> publisherRepository.save(new Publisher(bookDto.getPublisher())));
 		//Authors
 		Set<Author> authors = bookDto.getAuthors().stream()
-				.map(a -> authorRepository.findById(a.getName())
-						.orElseGet(() -> authorRepository.save(new Author(a.getName(), a.getBirthDate()))))
-				.collect(Collectors.toSet());		
+												  .map(a -> authorRepository.findById(a.getName())
+												  .orElseGet(() -> authorRepository.save(new Author(a.getName(), a.getBirthDate()))))
+												  .collect(Collectors.toSet());		
 		Book book = new Book(bookDto.getIsbn(), bookDto.getTitle(), authors, publisher);
 		bookRepository.save(book);
 		return true;
@@ -72,24 +72,24 @@ public class BookServiceImpl implements BookService {
 	public Iterable<BookDto> findBooksByAuthor(String authorName) {
 		Author author = authorRepository.findById(authorName).orElseThrow(EntityNotFoundException::new);
 		return author.getBooks().stream()
-				.map(b -> modelMapper.map(b, BookDto.class))
-				.collect(Collectors.toList());
+								.map(b -> modelMapper.map(b, BookDto.class))
+								.collect(Collectors.toList());
 	}
 
 	@Override
 	public Iterable<BookDto> findBooksByPublisher(String publisherName) {
 		Publisher publisher = publisherRepository.findById(publisherName).orElseThrow(EntityNotFoundException::new);
 		return publisher.getBooks().stream()
-				.map(b -> modelMapper.map(b, BookDto.class))
-				.collect(Collectors.toList());
+								   .map(b -> modelMapper.map(b, BookDto.class))
+								   .collect(Collectors.toList());
 	}
 
 	@Override
 	public Iterable<AuthorDto> findBookAuthors(String isbn) {
 		Book book = bookRepository.findById(isbn).orElseThrow(EntityNotFoundException::new);
 		return book.getAuthors().stream()
-				.map(a -> modelMapper.map(a, AuthorDto.class))
-				.collect(Collectors.toList());
+								.map(a -> modelMapper.map(a, AuthorDto.class))
+								.collect(Collectors.toList());
 	}
 
 	@Override

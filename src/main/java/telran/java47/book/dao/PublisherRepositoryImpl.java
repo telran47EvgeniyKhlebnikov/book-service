@@ -47,3 +47,4 @@ public class PublisherRepositoryImpl implements PublisherRepository {
 	}
 
 }
+
