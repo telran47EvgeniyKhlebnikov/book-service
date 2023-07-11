@@ -14,4 +14,5 @@ public interface PublisherRepository extends PagingAndSortingRepository<Publishe
 	List<String> findPublishersByAuthor(String authorName);
 	
 	Stream<Publisher> findDistinctByBooksAuthorsName(String authorName);
+	
 }
